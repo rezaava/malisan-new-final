@@ -9,5 +9,5 @@ use App\Http\Controllers\AuthController;
 
     Route::get('/', [AuthController::class, 'index'])->name('index');
 
-
+    // gvbhiko[]
 
