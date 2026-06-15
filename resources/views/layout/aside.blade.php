@@ -3,7 +3,7 @@
         <a href="/dashboard" class="menu-item active-menu">
             <i class="fas fa-tachometer-alt"></i> <span>میز کار</span>
         </a>
-        <a href="/my-courses" class="menu-item">
+        <a href="{{Route('courses')}}" class="menu-item">
             <i class="fas fa-book-open"></i> <span>درس های من</span>
         </a>
         <a href="/malisan-courses" class="menu-item">
