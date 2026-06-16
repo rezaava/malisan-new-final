@@ -23,7 +23,7 @@
 <div class="courses-grid">
     <a href="/courses/1" class="course-card">
         <div class="course-image">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&h=150&fit=crop" alt="درس ریاضی">
+            <img src="test.jpg" alt="درس ریاضی">
             <div class="course-badge">فعال</div>
         </div>
         <div class="course-actions">
@@ -60,7 +60,7 @@
 
     <a href="/courses/2" class="course-card">
         <div class="course-image">
-            <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=300&h=150&fit=crop" alt="درس فیزیک">
+            <img src="test.jpg" alt="درس فیزیک">
             <div class="course-badge">فعال</div>
         </div>
         <div class="course-actions">
@@ -97,7 +97,7 @@
 
     <a href="/courses/3" class="course-card">
         <div class="course-image">
-            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&h=150&fit=crop" alt="درس برنامه‌نویسی">
+            <img src="test.jpg" alt="درس برنامه‌نویسی">
             <div class="course-badge">فعال</div>
         </div>
         <div class="course-actions">
@@ -134,7 +134,7 @@
 
     <a href="/courses/4" class="course-card">
         <div class="course-image">
-            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a164?w=300&h=150&fit=crop" alt="درس پایگاه داده">
+            <img src="test.jpg" alt="درس پایگاه داده">
             <div class="course-badge">فعال</div>
         </div>
         <div class="course-actions">

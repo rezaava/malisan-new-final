@@ -6,22 +6,22 @@
         <a href="{{Route('courses')}}" class="menu-item">
             <i class="fas fa-book-open"></i> <span>درس های من</span>
         </a>
-        <a href="/malisan-courses" class="menu-item">
+        <a href="{{Route('publics')}}" class="menu-item">
             <i class="fas fa-university"></i> <span>دوره های ملیسان</span>
         </a>
-        <a href="/exams" class="menu-item">
+        <a href="{{Route('exams')}}" class="menu-item">
             <i class="fas fa-pen-alt"></i> <span>آزمون ها</span>
         </a>
-        <a href="/surveys" class="menu-item">
+        <a href="{{Route('surveys')}}" class="menu-item">
             <i class="fas fa-chart-simple"></i> <span>نظرسنجی</span>
         </a>
-        <a href="/content-create" class="menu-item">
+        <a href="{{Route('content')}}" class="menu-item">
             <i class="fas fa-edit"></i> <span>تولید محتوا</span>
         </a>
-        <a href="/create-quiz" class="menu-item">
+        <a href="{{Route('createQuiz')}}" class="menu-item">
             <i class="fas fa-trophy"></i> <span>ساخت مسابقه</span>
         </a>
-        <a href="/competitions" class="menu-item">
+        <a href="{{Route('quizzes')}}" class="menu-item">
             <i class="fas fa-medal"></i> <span>مسابقات</span>
         </a>
         <a href="/conversations" class="menu-item">

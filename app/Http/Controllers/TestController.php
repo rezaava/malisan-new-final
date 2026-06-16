@@ -21,4 +21,40 @@ class TestController extends Controller
 
         return view('courses');
     }
+
+    public function publics()
+    {
+
+        return view('publics');
+    }
+
+    public function exams()
+    {
+
+        return view('exams');
+    }
+
+    public function surveys()
+    {
+
+        return view('surveys');
+    }
+
+    public function content()
+    {
+
+        return view('content');
+    }
+
+    public function createQuiz()
+    {
+
+        return view('create-quiz');
+    }
+
+    public function quizzes()
+    {
+
+        return view('quizzes');
+    }
 }
