@@ -11,9 +11,6 @@
 
     <div class="dashboard-wrapper">
 
-        @include('layout.aside')
-
-
         <div class="main-content">
             <div class="empty-content">
                 @yield('mohtava')
