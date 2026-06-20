@@ -27,7 +27,7 @@
             <a href="/courses" class="card-dash">
                 <div class="card-icon"><i class="fas fa-chalkboard"></i></div>
                 <div class="card-title">درس‌ها</div>
-                <div class="card-count">۸</div>
+                <div class="card-count">{{ $coursesCount }}</div>
                 <div class="card-text-sm">درس فعال</div>
             </a>
         </div>

@@ -34,11 +34,11 @@ class AuthController extends Controller
             // اگر کاربر لاگین بود بر اساس نقش هدایتش کن
             $user = auth()->user();
             if ($user->hasRole('admin')) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('index_admin');
             } elseif ($user->hasRole('teacher')) {
-                return redirect()->route('teacher.dashboard');
+                return redirect()->route('index_teacher');
             } elseif ($user->hasRole('student')) {
-                return redirect()->route('student.dashboard');
+                return redirect()->route('index_student');
             }
             return redirect()->route('home');
         }
@@ -82,9 +82,9 @@ class AuthController extends Controller
             if ($user->hasRole('admin')) {
                 return redirect()->route('admin.dashboard')->with('success', 'خوش آمدید مدیر گرامی');
             } elseif ($user->hasRole('teacher')) {
-                return redirect()->route('teacher.dashboard')->with('success', 'خوش آمدید استاد گرامی');
+                return redirect()->route('index_teacher')->with('success', 'خوش آمدید استاد گرامی');
             } elseif ($user->hasRole('student')) {
-                return redirect()->route('student.dashboard')->with('success', 'خوش آمدید دانشجو گرامی');
+                return redirect()->route('index_student')->with('success', 'خوش آمدید دانشجو گرامی');
             }
         } catch (\Exception $e) {
             return redirect()->back()
@@ -136,9 +136,9 @@ class AuthController extends Controller
         if ($user->hasRole('admin')) {
             return redirect()->route('admin.dashboard')->with('success', 'خوش آمدید مدیر گرامی');
         } elseif ($user->hasRole('teacher')) {
-            return redirect()->route('teacher.dashboard')->with('success', 'خوش آمدید استاد گرامی');
+            return redirect()->route('index_teacher')->with('success', 'خوش آمدید استاد گرامی');
         } elseif ($user->hasRole('student')) {
-            return redirect()->route('student.dashboard')->with('success', 'خوش آمدید دانشجو گرامی');
+            return redirect()->route('index_student')->with('success', 'خوش آمدید دانشجو گرامی');
         }
     }
 

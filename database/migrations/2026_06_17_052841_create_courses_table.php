@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->string('name', 191);
             $table->integer('archieve')->default(0);
             $table->string('header', 191)->nullable();
