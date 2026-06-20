@@ -6,17 +6,42 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function login()
     {
+        if (auth()->check()) {
+            // اگر کاربر لاگین بود بر اساس نقش هدایتش کن
+            $user = auth()->user();
+            if ($user->hasRole('admin')) {
+                return redirect()->route('index_admin');
+            } elseif ($user->hasRole('teacher')) {
+                return redirect()->route('index_teacher');
+            } elseif ($user->hasRole('student')) {
+                return redirect()->route('index_student');
+            }
+            return redirect()->route('home');
+        }
         return view('fakeBlade.login');
     }
 
     public function register()
     {
+        if (auth()->check()) {
+            // اگر کاربر لاگین بود بر اساس نقش هدایتش کن
+            $user = auth()->user();
+            if ($user->hasRole('admin')) {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->hasRole('teacher')) {
+                return redirect()->route('teacher.dashboard');
+            } elseif ($user->hasRole('student')) {
+                return redirect()->route('student.dashboard');
+            }
+            return redirect()->route('home');
+        }
         return view('fakeBlade.register');
     }
 
@@ -28,7 +53,7 @@ class AuthController extends Controller
             'family' => 'required|string|max:191',
             'national' => 'required|string|size:10|unique:users,national',
             'mobile' => 'required|string|size:11|unique:users,mobile',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -45,7 +70,7 @@ class AuthController extends Controller
                 'national' => $request->national,
                 'mobile' => $request->mobile,
                 'password' => Hash::make($request->password),
-                'role' => 2, // پیشفرض: دانشجو (role=2)
+                'role' => 3, // پیشفرض: دانشجو (role=2)
                 'active' => 1,
                 'email' => null, // میتونی از موبایل یا ایمیل استفاده کنی
             ]);
@@ -54,8 +79,13 @@ class AuthController extends Controller
 
             Auth::login($user);
 
-            return redirect()->route('dashboard')->with('success', 'ثبت نام با موفقیت انجام شد');
-
+            if ($user->hasRole('admin')) {
+                return redirect()->route('admin.dashboard')->with('success', 'خوش آمدید مدیر گرامی');
+            } elseif ($user->hasRole('teacher')) {
+                return redirect()->route('teacher.dashboard')->with('success', 'خوش آمدید استاد گرامی');
+            } elseif ($user->hasRole('student')) {
+                return redirect()->route('student.dashboard')->with('success', 'خوش آمدید دانشجو گرامی');
+            }
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('danger', 'خطا در ثبت نام: ' . $e->getMessage())
@@ -103,8 +133,13 @@ class AuthController extends Controller
         // ورود کاربر
         Auth::login($user, $request->has('remember'));
 
-        // بازگشت به صفحه مورد نظر
-        return redirect()->intended('/dashboard')->with('success', 'خوش آمدید');
+        if ($user->hasRole('admin')) {
+            return redirect()->route('admin.dashboard')->with('success', 'خوش آمدید مدیر گرامی');
+        } elseif ($user->hasRole('teacher')) {
+            return redirect()->route('teacher.dashboard')->with('success', 'خوش آمدید استاد گرامی');
+        } elseif ($user->hasRole('student')) {
+            return redirect()->route('student.dashboard')->with('success', 'خوش آمدید دانشجو گرامی');
+        }
     }
 
     public function logout(Request $request)
@@ -115,4 +150,26 @@ class AuthController extends Controller
 
         return redirect('/login')->with('success', 'با موفقیت خارج شدید');
     }
+
+    function roleFun() {
+        $admin = new Role();
+        $admin->name = 'admin';
+        $admin->display_name = 'مدیر سیستم';
+        $admin->description = 'مدیریت کامل سیستم';
+        $admin->save();
+
+        $teacher = new Role();
+        $teacher->name = 'teacher';
+        $teacher->display_name = 'استاد';
+        $teacher->description = 'مدیریت دوره‌ها';
+        $teacher->save();
+
+        $student = new Role();
+        $student->name = 'student';
+        $student->display_name = 'دانشجو';
+        $student->description = 'دسترسی به دوره‌ها';
+        $student->save();
+    }
+
+
 }

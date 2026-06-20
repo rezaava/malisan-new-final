@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Laratrust\Contracts\LaratrustUser;
+use Laratrust\Traits\HasRolesAndPermissions;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable implements LaratrustUser
 {
-    use HasFactory;
-
+    use HasRolesAndPermissions;
     protected $table = 'users';
+    
     protected $fillable = [
         'role', 'name', 'family', 'gender', 'email', 'national', 'shenasname',
         'personal', 'birthdate', 'city_birth', 'city', 'address', 'postal',
@@ -18,7 +20,31 @@ class User extends Model
         'research', 'image', 'shaba', 'turn', 'password', 'aneto_token'
     ];
 
-    protected $hidden = ['password'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    // متدهای کمکی برای بررسی نقش‌ها
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function isTeacher()
+    {
+        return $this->hasRole('teacher');
+    }
+
+    public function isStudent()
+    {
+        return $this->hasRole('student');
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->family;
+    }
 
     // روابط
     public function courses()

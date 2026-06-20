@@ -183,7 +183,7 @@ body{
 
 
 
-        <form method="post" action="/register" enctype="multipart/form-data">
+        <form method="post" action="{{ route('registerPost') }}" enctype="multipart/form-data">
 
             @csrf
 

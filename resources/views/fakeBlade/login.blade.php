@@ -44,7 +44,7 @@
 <div class="auth-page">
     <div class="auth-card">
         <div class="auth-title">ورود به حساب کاربری</div>
-        <form method="post" action="{{ route('login') }}">
+        <form method="post" action="{{ route('loginPost') }}">
             @csrf
             @if (session()->has('error'))
                 <div class="alert">{{ session('error') }}</div>
