@@ -3,21 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Laratrust\Contracts\LaratrustUser;
-use Laratrust\Traits\HasRolesAndPermissions;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable implements LaratrustUser
+class User extends Authenticatable
 {
-    use HasRolesAndPermissions;
-    protected $table = 'users';
-    
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
     protected $fillable = [
-        'role', 'name', 'family', 'gender', 'email', 'national', 'shenasname',
-        'personal', 'birthdate', 'city_birth', 'city', 'address', 'postal',
-        'tel', 'mobile', 'sms', 'active', 'tour', 'tel_work', 'uni_email',
-        'web', 'scholar', 'social', 'degree', 'field', 'trend', 'trend_en',
-        'research', 'image', 'shaba', 'turn', 'password', 'aneto_token'
+        'name',
+        'family',
+        'national',
+        'mobile',
+        'password',
+        'type',
+        'active',
     ];
 
     protected $hidden = [
